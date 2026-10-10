@@ -8,8 +8,10 @@ dependencies = [
     "fastapi>=0.143.0",
     "opentelemetry-exporter-otlp>=1.45.1",
     "opentelemetry-instrumentation-fastapi>=0.66b1",
+    "opentelemetry-instrumentation-sqlalchemy>=0.66b1",
     "opentelemetry-sdk>=1.45.1",
     "pydantic-settings>=2.15.0",
+    "sqlalchemy[asyncio]>=2.1.4",
     "structlog>=26.1.0",
     "uvicorn>=0.54.0",
 ]
