@@ -1,0 +1,30 @@
+output-format = "gitlab"
+line-length = 160
+
+[lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "W",
+    "B",
+    "C4",
+    "UP",
+    "ISC",
+    "ICN",
+    "SIM",
+    "TID",
+    "RET",
+    "ANN201",
+    "ANN202",
+    "ANN204",
+    "ANN205"
+]
+ignore = ["B905"]
+
+
+[format]
+quote-style = "single"
+indent-style = "space"
+docstring-code-format = true
+docstring-code-line-length = 200
