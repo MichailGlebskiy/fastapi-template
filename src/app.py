@@ -11,9 +11,7 @@ from src.middleware.logging import logging_middleware
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
-    logger = setup_logging()
-    setup_otel_providers(logger)
+async def lifespan(_: FastAPI) -> AsyncGenerator[None]:
     yield
 
 
