@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.core.logging import setup_logging
-from src.core.otel import setup_instrumentation, setup_otel_providers
+from src.core.otel import setup_otel_providers
 from src.core.settings import settings
 from src.middleware.logging import logging_middleware
 
@@ -17,8 +17,18 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
     yield
 
 
-app = FastAPI(**settings.app_config, lifespan=lifespan)
-setup_instrumentation(app)
+logger = setup_logging()
+tracer_provider, logger_provider = setup_otel_providers(logger)
+app = FastAPI(
+    **settings.app_config,
+    lifespan=lifespan,
+    telemetry={
+        'tracer_provider': tracer_provider,
+        'logger_provider': logger_provider,
+        'operation_spans': True,
+    },
+)
+
 
 # middleware
 app.add_middleware(
